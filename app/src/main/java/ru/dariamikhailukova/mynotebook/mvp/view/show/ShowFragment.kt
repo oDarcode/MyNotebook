@@ -8,15 +8,12 @@ import android.text.TextUtils
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import ru.dariamikhailukova.mynotebook.R
 
 import ru.dariamikhailukova.mynotebook.databinding.FragmentShowBinding
-import ru.dariamikhailukova.mynotebook.mvp.model.Note
 import ru.dariamikhailukova.mynotebook.mvp.presenter.show.ShowFragmentPresenter
-import ru.dariamikhailukova.mynotebook.viewmodel.NoteViewModel
 
 class ShowFragment : Fragment(), ShowView {
     private var presenter: ShowFragmentPresenter? = null
@@ -25,7 +22,7 @@ class ShowFragment : Fragment(), ShowView {
     private var _binding: FragmentShowBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var mNoteViewModel: NoteViewModel
+    //private lateinit var mNoteViewModel: NoteViewModel
 
     lateinit var name: String
     lateinit var text: String
@@ -36,7 +33,7 @@ class ShowFragment : Fragment(), ShowView {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentShowBinding.inflate(inflater, container, false)
-        mNoteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
+        //mNoteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
         presenter = ShowFragmentPresenter(this)
         setHasOptionsMenu(true)
 
@@ -50,7 +47,7 @@ class ShowFragment : Fragment(), ShowView {
 
         binding.updateTextNoteName.setText(name)
         binding.updateTextNote.setText(text)
-        binding.updateTextDate.setText(date.toString())
+        binding.updateTextDate.setText(date)
     }
 
 
@@ -82,21 +79,16 @@ class ShowFragment : Fragment(), ShowView {
         //date = Integer.parseInt(binding.updateTextDate.text.toString())
 
         presenter?.update(name, text, date)
-
-
-
     }
 
-    override fun inputCheck(name: String, text: String, date: Editable): Boolean {
-        return !(TextUtils.isEmpty(name) || TextUtils.isEmpty(text) || date.isEmpty())
-    }
 
     override fun deleteNote() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes"){_,_->
-            mNoteViewModel.deleteNote(args.currentNote)
-            Toast.makeText(requireContext(), "Successfully removed", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_showFragment_to_listFragment)
+            presenter?.delete(args.currentNote)
+            //mNoteViewModel.deleteNote(args.currentNote)
+            //Toast.makeText(requireContext(), "Successfully removed", Toast.LENGTH_SHORT).show()
+            //findNavController().navigate(R.id.action_showFragment_to_listFragment)
         }
 
         builder.setNegativeButton("No"){_,_->}
@@ -121,6 +113,10 @@ class ShowFragment : Fragment(), ShowView {
 
     override fun returnToList() {
         findNavController().navigate(R.id.action_showFragment_to_listFragment)
+    }
+
+    override fun currentNoteId(): Int {
+        return args.currentNote.id
     }
 
 }
