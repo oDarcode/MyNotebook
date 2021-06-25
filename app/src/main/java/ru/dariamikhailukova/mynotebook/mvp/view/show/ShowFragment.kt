@@ -3,8 +3,6 @@ package ru.dariamikhailukova.mynotebook.mvp.view.show
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextUtils
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
@@ -24,9 +22,9 @@ class ShowFragment : Fragment(), ShowView {
 
     //private lateinit var mNoteViewModel: NoteViewModel
 
-    lateinit var name: String
-    lateinit var text: String
-    lateinit var date: String
+    private lateinit var name: String
+    private lateinit var text: String
+    private lateinit var date: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
