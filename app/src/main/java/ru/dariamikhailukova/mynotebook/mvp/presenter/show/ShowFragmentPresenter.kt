@@ -3,7 +3,6 @@ package ru.dariamikhailukova.mynotebook.mvp.presenter.show
 import android.text.TextUtils
 import androidx.lifecycle.ViewModelProvider
 import ru.dariamikhailukova.mynotebook.mvp.model.Note
-import ru.dariamikhailukova.mynotebook.mvp.view.add.AddFragment
 import ru.dariamikhailukova.mynotebook.mvp.view.show.ShowFragment
 import ru.dariamikhailukova.mynotebook.mvp.view.show.ShowView
 import ru.dariamikhailukova.mynotebook.viewmodel.NoteViewModel

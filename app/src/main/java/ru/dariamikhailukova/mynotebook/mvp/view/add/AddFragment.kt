@@ -1,19 +1,13 @@
 package ru.dariamikhailukova.mynotebook.mvp.view.add
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextUtils
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-
 import ru.dariamikhailukova.mynotebook.R
-
 import ru.dariamikhailukova.mynotebook.databinding.FragmentAddBinding
 import ru.dariamikhailukova.mynotebook.mvp.presenter.add.AddFragmentPresenter
-
 
 class AddFragment : Fragment(), AddView {
     private var presenter: AddFragmentPresenter? = null

@@ -1,4 +1,4 @@
-package ru.dariamikhailukova.mynotebook.mvp.view.list
+package ru.dariamikhailukova.mynotebook.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 
 import ru.dariamikhailukova.mynotebook.R
 import ru.dariamikhailukova.mynotebook.mvp.model.Note
+import ru.dariamikhailukova.mynotebook.mvp.view.list.ListFragmentDirections
 
 class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     private var noteList = emptyList<Note>()
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-
 
     }
 

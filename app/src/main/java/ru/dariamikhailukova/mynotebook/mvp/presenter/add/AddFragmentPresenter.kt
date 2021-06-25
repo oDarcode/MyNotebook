@@ -11,12 +11,7 @@ import ru.dariamikhailukova.mynotebook.viewmodel.NoteViewModel
 
 class AddFragmentPresenter(_view: AddFragment): AddPresenter {
     private var view: AddView = _view
-    private lateinit var mNoteViewModel: NoteViewModel
-
-    init{
-        mNoteViewModel = ViewModelProvider(_view).get(NoteViewModel::class.java)
-        //view.initView()
-    }
+    private var mNoteViewModel: NoteViewModel = ViewModelProvider(_view).get(NoteViewModel::class.java)
 
     override fun insertDataToDatabase(name: String, text: String, date: String) {
         if (inputCheck(name, text, date)){
