@@ -15,42 +15,38 @@ class ShowFragmentPresenter(_view: ShowFragment): ShowPresenter {
         view.initView()
     }
 
+    //вызов неяного интента - отправки элемента бд
     override fun sendEmail(name: String, text: String, date: String) {
         if(inputCheck(name, text, date)){
             view.sendIntent(name, text)
-            //view.returnToList()
         }else{
-            view.showToast("something")
-            //view.showToast(R.string.emptyError)
+            view.showToast("Please fill out all fields.")
         }
 
     }
 
+    //обновление полей элемента бд
     override fun update(name: String, text: String, date: String) {
         if(inputCheck(name,text, date)){
-            val updatedNote = Note(view.currentNoteId(), name, text, Integer.parseInt(date))
+            val updatedNote = Note(view.currentNoteId(), name, text, (date))
 
             mNoteViewModel.updateNote(updatedNote)
-            view.showToast("Successfully updated")
+            view.showToast("Successfully updated.")
             view.returnToList()
-            //Toast.makeText(requireContext(), "Successfully updated", Toast.LENGTH_LONG).show()
-            //findNavController().navigate(R.id.action_showFragment_to_listFragment)
         }else{
-            view.showToast("Please fill out all fields")
-            //Toast.makeText(requireContext(), "Please fill out all fields", Toast.LENGTH_LONG).show()
+            view.showToast("Please fill out all fields.")
         }
     }
 
+    //удаление элемента бд
     override fun delete(currentNote: Note) {
         mNoteViewModel.deleteNote(currentNote)
-        view.showToast("Successfully removed")
+        view.showToast("Successfully removed.")
         view.returnToList()
-        //Toast.makeText(requireContext(), "Successfully removed", Toast.LENGTH_SHORT).show()
-        //findNavController().navigate(R.id.action_showFragment_to_listFragment)
     }
 
+    //все ли строки заполнены
     override fun inputCheck(name: String, text: String, date: String): Boolean{
         return !(TextUtils.isEmpty(name) || TextUtils.isEmpty(text) || TextUtils.isEmpty(date))
-                //date.isEmpty())
     }
 }

@@ -13,24 +13,22 @@ class AddFragmentPresenter(_view: AddFragment): AddPresenter {
     private var view: AddView = _view
     private var mNoteViewModel: NoteViewModel = ViewModelProvider(_view).get(NoteViewModel::class.java)
 
+    //добавление нового элемента в бд
     override fun insertDataToDatabase(name: String, text: String, date: String) {
         if (inputCheck(name, text, date)){
-            val note = Note(0, name, text, Integer.parseInt(date))
+            val note = Note(0, name, text, (date))
 
             mNoteViewModel.addNote(note)
             view.showToast("Success")
-            //Toast.makeText(requireContext(), "Success", Toast.LENGTH_LONG).show()
             view.returnToList()
-            //findNavController().navigate(R.id.action_addFragment_to_listFragment)
         }else{
             view.showToast("Please fill all fields.")
-            //Toast.makeText(requireContext(), "Please fill all fields.", Toast.LENGTH_LONG).show()
         }
     }
 
+    //все ли строки заполнены
     override fun inputCheck(name: String, text: String, date: String): Boolean{
         return !(TextUtils.isEmpty(name) || TextUtils.isEmpty(text) || TextUtils.isEmpty(date))
-        //date.isEmpty())
     }
 
 }

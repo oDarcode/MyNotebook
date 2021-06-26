@@ -1,4 +1,4 @@
-package ru.dariamikhailukova.mynotebook.mvp.view.list
+   package ru.dariamikhailukova.mynotebook.mvp.view.list
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -21,7 +21,6 @@ class ListFragment : Fragment(), ListView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentListBinding.inflate(inflater, container, false)
         presenter = ListFragmentPresenter(this)
         setHasOptionsMenu(true)
@@ -31,7 +30,6 @@ class ListFragment : Fragment(), ListView {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        //mNoteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
         val allData = presenter?.getAllData()
         allData?.observe(viewLifecycleOwner, { note ->
             adapter.setData(note)
@@ -44,15 +42,12 @@ class ListFragment : Fragment(), ListView {
         return binding.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
+    //Создание меню
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.delete_menu, menu)
     }
 
+    //выбор элемента меню
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.menu_delete){
             deleteAllNotes()
@@ -60,6 +55,7 @@ class ListFragment : Fragment(), ListView {
         return super.onOptionsItemSelected(item)
     }
 
+    //удаление всех элеметов бд
     override fun deleteAllNotes() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes"){_,_->
@@ -72,8 +68,13 @@ class ListFragment : Fragment(), ListView {
         builder.create().show()
     }
 
+    //вывод Toast
     override fun showToast(text: String) {
         Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

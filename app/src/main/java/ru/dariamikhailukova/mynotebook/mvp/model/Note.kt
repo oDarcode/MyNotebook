@@ -12,5 +12,5 @@ data class Note(
     var id: Int,
     var name: String,
     var text: String,
-    var date: Int
+    var date: String
 ): Parcelable

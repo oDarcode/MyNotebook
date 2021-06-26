@@ -1,12 +1,15 @@
 package ru.dariamikhailukova.mynotebook.data
 
-import androidx.room.Room
 import android.content.Context
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import ru.dariamikhailukova.mynotebook.mvp.model.Note
 
-@Database(entities = [Note::class], version = 1, exportSchema = false)
+
+@Database(entities = [Note::class], version = 2, exportSchema = false)
 abstract class NoteDatabase: RoomDatabase() {
     abstract fun noteDao(): NoteDao
 
@@ -24,7 +27,7 @@ abstract class NoteDatabase: RoomDatabase() {
                     context.applicationContext,
                     NoteDatabase::class.java,
                     "app_database"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 return instance
             }

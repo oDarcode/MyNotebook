@@ -14,30 +14,23 @@ class AddFragment : Fragment(), AddView {
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
 
-    //private lateinit var mNoteViewModel: NoteViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentAddBinding.inflate(inflater, container, false)
-
-        //mNoteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
         presenter = AddFragmentPresenter(this)
         setHasOptionsMenu(true)
 
         return binding.root
     }
 
-    override fun initView() {
-        //TODO("Not yet implemented")
-    }
-
+    //Создание меню
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.save_menu, menu)
     }
 
+    //выбор элемента меню
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.menu_save){
             val name = binding.textNoteName.text.toString()
@@ -49,10 +42,12 @@ class AddFragment : Fragment(), AddView {
         return super.onOptionsItemSelected(item)
     }
 
+    //переход к фрагменту list
     override fun returnToList() {
         findNavController().navigate(R.id.action_addFragment_to_listFragment)
     }
 
+    //вывод Toast
     override fun showToast(text: String) {
         Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
     }

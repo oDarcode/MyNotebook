@@ -20,8 +20,6 @@ class ShowFragment : Fragment(), ShowView {
     private var _binding: FragmentShowBinding? = null
     private val binding get() = _binding!!
 
-    //private lateinit var mNoteViewModel: NoteViewModel
-
     private lateinit var name: String
     private lateinit var text: String
     private lateinit var date: String
@@ -31,7 +29,6 @@ class ShowFragment : Fragment(), ShowView {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentShowBinding.inflate(inflater, container, false)
-        //mNoteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
         presenter = ShowFragmentPresenter(this)
         setHasOptionsMenu(true)
 
@@ -41,7 +38,7 @@ class ShowFragment : Fragment(), ShowView {
     override fun initView(){
         name = args.currentNote.name
         text = args.currentNote.text
-        date = args.currentNote.date.toString()
+        date = args.currentNote.date
 
         binding.updateTextNoteName.setText(name)
         binding.updateTextNote.setText(text)
@@ -70,6 +67,7 @@ class ShowFragment : Fragment(), ShowView {
         return super.onOptionsItemSelected(item)
     }
 
+    //бновление полей элемента бд
     override fun updateItem(){
         name = binding.updateTextNoteName.text.toString()
         text = binding.updateTextNote.text.toString()
@@ -79,14 +77,11 @@ class ShowFragment : Fragment(), ShowView {
         presenter?.update(name, text, date)
     }
 
-
+    //удаление элемета бд
     override fun deleteNote() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes"){_,_->
             presenter?.delete(args.currentNote)
-            //mNoteViewModel.deleteNote(args.currentNote)
-            //Toast.makeText(requireContext(), "Successfully removed", Toast.LENGTH_SHORT).show()
-            //findNavController().navigate(R.id.action_showFragment_to_listFragment)
         }
 
         builder.setNegativeButton("No"){_,_->}
@@ -95,10 +90,12 @@ class ShowFragment : Fragment(), ShowView {
         builder.create().show()
     }
 
+    //вывод Toast
     override fun showToast(text: String) {
         Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
     }
 
+    //отправка неявного интента
     override fun sendIntent(name: String, text: String) {
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
@@ -109,12 +106,19 @@ class ShowFragment : Fragment(), ShowView {
         startActivity(Intent.createChooser(sendIntent, ""))
     }
 
+    //переход к фрагменту list
     override fun returnToList() {
         findNavController().navigate(R.id.action_showFragment_to_listFragment)
     }
 
+    //возвращает id выбранного элемента бд
     override fun currentNoteId(): Int {
         return args.currentNote.id
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }
