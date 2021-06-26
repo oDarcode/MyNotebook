@@ -3,6 +3,7 @@ package ru.dariamikhailukova.mynotebook.mvp.presenter.add
 import android.text.TextUtils
 
 import androidx.lifecycle.ViewModelProvider
+import ru.dariamikhailukova.mynotebook.R
 
 import ru.dariamikhailukova.mynotebook.mvp.model.Note
 import ru.dariamikhailukova.mynotebook.mvp.view.add.AddFragment
@@ -19,10 +20,10 @@ class AddFragmentPresenter(_view: AddFragment): AddPresenter {
             val note = Note(0, name, text, (date))
 
             mNoteViewModel.addNote(note)
-            view.showToast("Success")
+            view.showToast(R.string.successfully)
             view.returnToList()
         }else{
-            view.showToast("Please fill all fields.")
+            view.showToast(R.string.fill_all)
         }
     }
 

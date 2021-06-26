@@ -91,7 +91,7 @@ class ShowFragment : Fragment(), ShowView {
     }
 
     //вывод Toast
-    override fun showToast(text: String) {
+    override fun showToast(text: Int) {
         Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
     }
 

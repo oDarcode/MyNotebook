@@ -2,6 +2,7 @@ package ru.dariamikhailukova.mynotebook.mvp.presenter.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
+import ru.dariamikhailukova.mynotebook.R
 import ru.dariamikhailukova.mynotebook.mvp.model.Note
 import ru.dariamikhailukova.mynotebook.mvp.view.list.ListFragment
 import ru.dariamikhailukova.mynotebook.mvp.view.list.ListView
@@ -19,6 +20,6 @@ class ListFragmentPresenter(_view: ListFragment): ListPresenter {
     //удаление всех элементов бд
     override fun deleteAll(){
         mNoteViewModel.deleteAllNotes()
-        view.showToast("Removed everything")
+        view.showToast(R.string.remove_all)
     }
 }

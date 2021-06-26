@@ -4,7 +4,7 @@ interface ShowView {
     fun initView()
     fun updateItem()
     fun deleteNote()
-    fun showToast(text: String)
+    fun showToast(text: Int)
     fun sendIntent(name: String, text: String)
     fun returnToList()
     fun currentNoteId(): Int

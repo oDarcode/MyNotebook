@@ -2,6 +2,7 @@ package ru.dariamikhailukova.mynotebook.mvp.presenter.show
 
 import android.text.TextUtils
 import androidx.lifecycle.ViewModelProvider
+import ru.dariamikhailukova.mynotebook.R
 import ru.dariamikhailukova.mynotebook.mvp.model.Note
 import ru.dariamikhailukova.mynotebook.mvp.view.show.ShowFragment
 import ru.dariamikhailukova.mynotebook.mvp.view.show.ShowView
@@ -20,7 +21,7 @@ class ShowFragmentPresenter(_view: ShowFragment): ShowPresenter {
         if(inputCheck(name, text, date)){
             view.sendIntent(name, text)
         }else{
-            view.showToast("Please fill out all fields.")
+            view.showToast(R.string.fill_all)
         }
 
     }
@@ -31,17 +32,17 @@ class ShowFragmentPresenter(_view: ShowFragment): ShowPresenter {
             val updatedNote = Note(view.currentNoteId(), name, text, (date))
 
             mNoteViewModel.updateNote(updatedNote)
-            view.showToast("Successfully updated.")
+            view.showToast(R.string.update)
             view.returnToList()
         }else{
-            view.showToast("Please fill out all fields.")
+            view.showToast(R.string.fill_all)
         }
     }
 
     //удаление элемента бд
     override fun delete(currentNote: Note) {
         mNoteViewModel.deleteNote(currentNote)
-        view.showToast("Successfully removed.")
+        view.showToast(R.string.remove)
         view.returnToList()
     }
 
