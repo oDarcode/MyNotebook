@@ -14,4 +14,6 @@
     <string name="name_note">Name Note</string>
     <string name="text_note">Text Note</string>
     <string name="date">Date</string>
+    <string name="text_about">Привет!\nЭто приложение создано Михайлюковой Дарьей.\nСпасибо за просмотр!</string>
+    <string name="about">About</string>
 </resources>

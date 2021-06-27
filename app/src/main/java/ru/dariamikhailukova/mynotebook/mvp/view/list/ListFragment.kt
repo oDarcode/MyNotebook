@@ -1,12 +1,14 @@
    package ru.dariamikhailukova.mynotebook.mvp.view.list
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.dariamikhailukova.mynotebook.AboutActivity
 import ru.dariamikhailukova.mynotebook.R
 import ru.dariamikhailukova.mynotebook.adapter.ListAdapter
 import ru.dariamikhailukova.mynotebook.databinding.FragmentListBinding
@@ -51,6 +53,11 @@ class ListFragment : Fragment(), ListView {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.menu_delete){
             deleteAllNotes()
+        }
+
+        if(item.itemId == R.id.menu_about){
+            val intent = Intent(activity, AboutActivity::class.java)
+            startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }
