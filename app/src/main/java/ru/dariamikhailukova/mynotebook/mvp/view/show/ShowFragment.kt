@@ -42,7 +42,7 @@ class ShowFragment : Fragment(), ShowView {
 
         binding.updateTextNoteName.setText(name)
         binding.updateTextNote.setText(text)
-        binding.updateTextDate.setText(date)
+        binding.updateTextDate.text = date
     }
 
 
@@ -67,7 +67,7 @@ class ShowFragment : Fragment(), ShowView {
         return super.onOptionsItemSelected(item)
     }
 
-    //бновление полей элемента бд
+    //обновление полей элемента бд
     override fun updateItem(){
         name = binding.updateTextNoteName.text.toString()
         text = binding.updateTextNote.text.toString()

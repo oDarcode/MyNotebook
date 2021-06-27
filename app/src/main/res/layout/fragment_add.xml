@@ -21,28 +21,16 @@
 
     <EditText
         android:id="@+id/textNote"
-        android:layout_width="375dp"
-        android:layout_height="350dp"
+        android:layout_width="374dp"
+        android:layout_height="611dp"
         android:ems="10"
+        android:gravity="start|top"
         android:hint="@string/text_note"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/textDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textNoteName" />
-
-    <EditText
-        android:id="@+id/textDate"
-        android:layout_width="375dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:hint="@string/date"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textNote" />
+        app:layout_constraintTop_toBottomOf="@+id/textNoteName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

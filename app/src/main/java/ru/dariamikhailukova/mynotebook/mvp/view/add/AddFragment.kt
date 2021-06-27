@@ -35,9 +35,8 @@ class AddFragment : Fragment(), AddView {
         if(item.itemId == R.id.menu_save){
             val name = binding.textNoteName.text.toString()
             val text = binding.textNote.text.toString()
-            val date = binding.textDate.text.toString()
 
-            presenter?.insertDataToDatabase(name, text, date)
+            presenter?.insertDataToDatabase(name, text)
         }
         return super.onOptionsItemSelected(item)
     }
